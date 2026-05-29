@@ -296,43 +296,30 @@ body {
   align-items: center;
 }
 
-/* Make the projects section fill the viewport and use internal scrolling
-   so the entire section is visible when anchored to #projects */
+/* Projects page: let the browser handle scrolling normally. */
 main#projects .section {
   padding: 2rem 0;
-  height: 100vh;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
 }
 
 main#projects .mx-auto {
-  max-height: calc(100vh - 4rem);
-  display: flex;
-  flex-direction: column;
   width: 100%;
 }
 
 .projects-split {
-  height: 100%;
-  align-items: stretch;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
 }
 
-.projects-list,
-.project-code {
-  overflow: auto;
-  padding-right: 0.5rem;
-}
-
-/* ensure each column uses full height */
 .projects-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 1rem;
 }
 
 .project-code {
-  max-height: 100%;
+  overflow: auto;
+  max-height: 60vh;
 }
 
 .section > div {
@@ -621,23 +608,7 @@ main#projects .mx-auto {
   font-size: 0.75rem;
 }
 
-.projects-list .project-item:nth-child(1) {
-  background-image: url("assets/photo%20(1).png");
-  background-size: 120%;
-  background-position: -20% center;
-}
 
-.projects-list .project-item:nth-child(2) {
-  background-image: url("assets/photo%20(2).png");
-  background-size: 120%;
-  background-position: -20% center;
-}
-
-.projects-list .project-item:nth-child(3) {
-  background-image: url("assets/photo%20(3).jpg");
-  background-size: 120%;
-  background-position: -20% center;
-}
 
 .project-title {
   font-family: "Rockwell", "Georgia", serif;

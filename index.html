@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Portfolio - Ayesha Fatima</title>
+    <title>Portfolio - Sierra Kaluba</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -96,7 +96,7 @@
       </section>
 
       <section id="projects" class="section">
-        <div class="mx-auto max-w-1xl px-1">
+        <div class="mx-auto max-w-1xl px-6">
           <div class="section-title">My Projects</div>
           <div class="projects-split">
             <div class="projects-list">
@@ -134,20 +134,110 @@
     &lt;path d="M5 12h14m0 0l-6-6m6 6l-6 6" /&gt;
   &lt;/svg&gt;
 &lt;/button&gt;
-
-.cta {
-  display: inline-flex;
-  gap: 12px;
-  align-items: center;
-  padding: 12px 22px;
-  border-radius: 999px;
-  background: #3b82f6;
-  color: #0f172a;
+Afficher du texte
+print("Hello World")
+Variables
+name = "Samuel"
+age = 20
+Conditions
+if age >= 18:
+    print("Majeur")
+else:
+    print("Mineur")
+Boucle for
+for i in range(10):
+    print(i)
+Boucle while
+while True:
+    print("Infini")
+Fonction
+def greet(name):
+    return f"Bonjour {name}"
+Liste
+users = ["Alice", "Bob", "Charlie"]
+Parcourir une liste
+for user in users:
+    print(user)
+Compréhension de liste (très populaire)
+squares = [x * x for x in range(10)]
+Dictionnaire
+user = {
+    "name": "Samuel",
+    "age": 20
 }
+Gestion des erreurs
+try:
+    result = 10 / 0
+except Exception as e:
+    print(e)
+Lire un fichier
+with open("file.txt", "r") as file:
+    content = file.read()
+Écrire dans un fichier
+with open("file.txt", "w") as file:
+    file.write("Bonjour")
+Importer un module
+import os
+import sys
+import json
+Classe
+class User:
+    def __init__(self, name):
+        self.name = name
+Récupérer une entrée utilisateur
+name = input("Votre nom : ")
+JSON
+import json
 
-.cta:hover {
-  transform: translateY(-2px);
-}</code></pre>
+data = json.loads(json_string)
+Requête HTTP
+import requests
+
+response = requests.get("https://api.example.com")
+data = response.json()
+Flask (Backend Web)
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Hello World"
+FastAPI (très populaire actuellement)
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def root():
+    return {"message": "Hello World"}
+Data Science
+import pandas as pd
+import numpy as np
+Intelligence Artificielle
+import torch
+from transformers import pipeline
+Ligne Python devenue un mème chez les développeurs
+if __name__ == "__main__":
+    main()
+Les 10 lignes que presque tous les développeurs Python connaissent
+print("Hello World")
+if __name__ == "__main__":
+    main()
+for i in range(10):
+    print(i)
+with open("file.txt") as f:
+    data = f.read()
+import os
+import requests
+try:
+    pass
+except Exception as e:
+    print(e)
+items = [x for x in range(10)]
+class User:
+    pass
+response = requests.get(url)</code></pre>
             </div>
           </div>
         </div>

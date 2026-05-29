@@ -7,13 +7,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="bg-slate-950 text-slate-100">
+  <body class="bg-slate-950 text-slate-100" data-github-user="skylore300-hash" data-github-exclude="Portfolio">
     <div class="layout">
       <aside class="side-nav">
         <div class="side-nav-glass">
           <div class="side-nav-logo">
-            <div class="logo-mark">AF</div>
-            <span class="font-display text-sm tracking-wide">Ayesha</span>
+            <div class="logo-mark">SK</div>
+            <span class="font-display text-sm tracking-wide">Sierra Kaluba</span>
             <button
               id="navToggleClose"
               class="side-nav-close"
@@ -76,36 +76,22 @@
           <div class="mx-auto max-w-6xl px-6">
             <div class="section-title">Plus de projets</div>
             <div class="projects-split">
-              <div class="projects-list">
-                <article class="project-item" data-id="dashboard">
-                  <div class="project-title">Dashboard Analytics</div>
-                  <p class="project-text">
-                    Tableau de bord clair avec visualisation et filtres rapides.
-                  </p>
-                  <a class="btn btn-primary w-fit" href="#">Voir projet</a>
-                </article>
-                <article class="project-item" data-id="landing">
-                  <div class="project-title">Landing Page SaaS</div>
-                  <p class="project-text">
-                    Hero impactant, sections rythmes, et conversion optimise.
-                  </p>
-                  <a class="btn btn-primary w-fit" href="#">Voir projet</a>
-                </article>
-                <article class="project-item" data-id="ecommerce">
-                  <div class="project-title">E-Commerce UI</div>
-                  <p class="project-text">
-                    Grilles de produits, panier fluide, et micro-interactions.
-                  </p>
-                  <a class="btn btn-primary w-fit" href="#">Voir projet</a>
-                </article>
-                <article class="project-item" data-id="motion">
-                  <div class="project-title">Portfolio Motion</div>
-                  <p class="project-text">
-                    Animations subtiles et navigation plein ecran.
-                  </p>
-                  <a class="btn btn-primary w-fit" href="#">Voir projet</a>
-                </article>
-                <a class="btn btn-ghost w-fit" href="index.html#projects">Retour aux projets</a>
+              <div>
+                <div
+                  class="projects-list"
+                  id="projectsList"
+                  aria-live="polite"
+                  aria-busy="true"
+                >
+                  <article class="project-item">
+                    <div class="project-title">Chargement des projets GitHub...</div>
+                    <p class="project-text">
+                      Les cartes sont récupérées automatiquement depuis ton compte GitHub.
+                    </p>
+                  </article>
+                </div>
+                <p class="mt-4 text-sm text-white/60" id="projectsStatus">Connexion à GitHub en cours.</p>
+                <a class="btn btn-ghost w-fit mt-4" href="index.html#projects">Retour aux projets</a>
               </div>
 
               <div class="project-code" id="projectCodePanel" aria-live="polite">

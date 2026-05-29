@@ -4,8 +4,8 @@
   "description": "Static portfolio page built with HTML, Tailwind CSS (CDN), and JavaScript.",
   "main": "main.js",
   "scripts": {
-    "start": "npx http-server -p 8080",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "node --check main.js && node --check server.js"
   },
   "repository": {
     "type": "git",
