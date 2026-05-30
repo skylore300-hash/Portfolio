@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="bg-slate-950 text-slate-100" data-github-user="skylore300-hash" data-github-exclude="Portfolio">
+  <body class="bg-slate-950 text-slate-100" data-page="projects" data-github-user="skylore300-hash" data-github-exclude="Portfolio">
     <div class="layout">
       <aside class="side-nav">
         <div class="side-nav-glass">
@@ -19,6 +19,7 @@
               class="side-nav-close"
               type="button"
               aria-label="Fermer la navigation"
+              data-i18n-aria="closeNavAria"
             >
               x
             </button>
@@ -26,39 +27,31 @@
           <nav class="side-nav-links">
             <a class="side-nav-item" href="index.html#home">
               <span class="side-nav-icon">H</span>
-              <span>Home</span>
+              <span data-i18n="navHome">Accueil</span>
             </a>
             <a class="side-nav-item" href="index.html#projects">
               <span class="side-nav-icon">P</span>
-              <span>Projects</span>
+              <span data-i18n="navProjects">Projets</span>
             </a>
             <a class="side-nav-item" href="index.html#skills">
               <span class="side-nav-icon">S</span>
-              <span>Skills</span>
+              <span data-i18n="navSkills">Compétences</span>
             </a>
             <a class="side-nav-item" href="index.html#about">
               <span class="side-nav-icon">A</span>
-              <span>About</span>
+              <span data-i18n="navAbout">À propos</span>
             </a>
             <a class="side-nav-item" href="index.html#contact">
               <span class="side-nav-icon">C</span>
-              <span>Contact</span>
+              <span data-i18n="navContact">Contact</span>
             </a>
           </nav>
-          <div class="side-nav-projects">
-            <p class="text-xs uppercase tracking-[0.3em] text-white/50">Projects</p>
-            <div class="flex flex-col gap-2 text-xs text-white/70">
-              <span class="side-dot">UI Design</span>
-              <span class="side-dot">Landing Page</span>
-              <span class="side-dot">Portfolio</span>
-            </div>
-          </div>
           <div class="side-nav-footer">
-            <div class="side-toggle">
-              <span class="side-nav-icon">*</span>
-              <span>Theme</span>
-            </div>
-            <div class="side-avatar">AF</div>
+            <button class="side-control" id="langToggle" type="button" aria-pressed="false">
+              <span class="side-nav-icon">FR</span>
+              <span class="side-control-label" data-i18n="langToggleToEn">English</span>
+            </button>
+            <div class="side-avatar">SK</div>
           </div>
         </div>
       </aside>
@@ -69,12 +62,13 @@
           class="nav-open-btn"
           type="button"
           aria-label="Ouvrir la navigation"
+          data-i18n-aria="openNavAria"
         >
-          Menu
+          <span data-i18n="menuButton">Menu</span>
         </button>
         <section class="section">
           <div class="mx-auto max-w-6xl px-6">
-            <div class="section-title">Plus de projets</div>
+            <div class="section-title" data-i18n="projectsPageTitle">Plus de projets</div>
             <div class="projects-split">
               <div>
                 <div
@@ -84,22 +78,22 @@
                   aria-busy="true"
                 >
                   <article class="project-item">
-                    <div class="project-title">Chargement des projets GitHub...</div>
+                    <div class="project-title" data-i18n="projectsLoadingTitle">Chargement des projets GitHub...</div>
                     <p class="project-text">
-                      Les cartes sont récupérées automatiquement depuis ton compte GitHub.
+                      <span data-i18n="projectsLoadingText">Les cartes sont récupérées automatiquement depuis ton compte GitHub.</span>
                     </p>
                   </article>
                 </div>
-                <p class="mt-4 text-sm text-white/60" id="projectsStatus">Connexion à GitHub en cours.</p>
-                <a class="btn btn-ghost w-fit mt-4" href="index.html#projects">Retour aux projets</a>
+                <p class="mt-4 text-sm text-white/60" id="projectsStatus" data-i18n="projectsStatus">Connexion à GitHub en cours.</p>
+                <a class="btn btn-ghost w-fit mt-4" href="index.html#projects" data-i18n="backToProjects">Retour aux projets</a>
               </div>
 
               <div class="project-code" id="projectCodePanel" aria-live="polite">
                 <div class="code-header">
-                  <span id="codeTitle">Sélectionne un projet</span>
+                  <span id="codeTitle" data-i18n="selectProjectTitle">Sélectionne un projet</span>
                   <span class="code-pill" id="codeTag"></span>
                 </div>
-                <pre class="code-block"><code id="codeContent">// Cliquez sur un projet pour voir un extrait de code ici.</code></pre>
+                <pre class="code-block"><code id="codeContent" data-i18n="selectProjectCode">// Cliquez sur un projet pour voir un extrait de code ici.</code></pre>
               </div>
             </div>
           </div>

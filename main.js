@@ -1,13 +1,220 @@
 const navToggleClose = document.getElementById("navToggleClose");
 const navToggleOpen = document.getElementById("navToggleOpen");
+const langToggle = document.getElementById("langToggle");
+
+const translations = {
+  fr: {
+    homeTitle: "Portfolio - Sierra Kaluba",
+    projectsTitle: "Portfolio - Sierra Kaluba | Projets",
+    navHome: "Accueil",
+    navProjects: "Projets",
+    navSkills: "Compétences",
+    navAbout: "À propos",
+    navContact: "Contact",
+    menuButton: "Menu",
+    openNavAria: "Ouvrir la navigation",
+    closeNavAria: "Fermer la navigation",
+    langToggleToEn: "English",
+    langToggleToFr: "Français",
+    heroRole: "Développeur backend & web",
+    heroSubtitle: "Je crée des expériences web modernes, rapides et propres.",
+    heroCtaProjects: "Voir mes projets",
+    heroCtaContact: "Contact",
+    heroRightSubtitle: "Introuvable.",
+    projectsSectionTitle: "Mes projets",
+    projectOneTitle: "Site responsive",
+    projectOneText: "Site performant avec layout flexible, animation fluide et accessibilité soignée.",
+    projectTwoTitle: "Application de livraison",
+    projectTwoText: "Interface claire, expérience de commande rapide et navigation intuitive.",
+    projectThreeTitle: "Site portfolio",
+    projectThreeText: "Design moderne, typographie forte et mise en valeur du travail.",
+    projectViewButton: "Voir projet",
+    moreProjectsButton: "Plus de projets",
+    skillsSectionTitle: "Technologies",
+    skillHtmlText: "Structure sémantique et accessibilité.",
+    skillCssText: "Design responsive et utilities Tailwind.",
+    skillJsText: "Interactions, animations et logique client.",
+    skillNodeText: "APIs rapides et écosystème npm.",
+    skillPythonText: "Backend, data et scripts.",
+    skillPhpText: "Langage serveur et écosystème PHP.",
+    skillLaravelText: "Framework PHP pour applications web.",
+    skillTailwindText: "Framework CSS utility-first.",
+    skillGitText: "Versioning et collaboration.",
+    skillCppText: "Bases du langage et syntaxe.",
+    aboutKicker: "Développeur backend & web",
+    aboutHeading: "Je crée des expériences web claires et modernes.",
+    aboutText: "J’aime construire des interfaces élégantes, rapides et faciles à utiliser. Mon objectif est de transformer une idée en un produit concret, soigné et utile.",
+    contactTitle: "Contactez-moi",
+    contactLead: "Contactez-moi pour discuter de votre projet — je vous répondrai rapidement et avec plaisir.",
+    followTitle: "Réseaux sociaux",
+    formName: "Nom",
+    formEmail: "Email",
+    formPhone: "Téléphone",
+    formSubject: "Sujet",
+    formMessage: "Message",
+    sendMessageButton: "Envoyer le message",
+    footerDescription: "Ce site présente mes projets et compétences. Le contenu est protégé et appartient à son auteur. Merci de votre visite et à bientôt.",
+    footerBrand: "Sierra Kaluba",
+    footerMeta: "France | €",
+    projectsPageTitle: "Plus de projets",
+    projectsLoadingTitle: "Chargement des projets GitHub...",
+    projectsLoadingText: "Les cartes sont récupérées automatiquement depuis ton compte GitHub.",
+    projectsStatus: "Connexion à GitHub en cours.",
+    backToProjects: "Retour aux projets",
+    selectProjectTitle: "Sélectionne un projet",
+    selectProjectCode: "// Cliquez sur un projet pour voir un extrait de code ici."
+  },
+  en: {
+    homeTitle: "Portfolio - Sierra Kaluba",
+    projectsTitle: "Portfolio - Sierra Kaluba | Projects",
+    navHome: "Home",
+    navProjects: "Projects",
+    navSkills: "Skills",
+    navAbout: "About",
+    navContact: "Contact",
+    menuButton: "Menu",
+    openNavAria: "Open navigation",
+    closeNavAria: "Close navigation",
+    langToggleToEn: "English",
+    langToggleToFr: "French",
+    heroRole: "Backend & Web Developer",
+    heroSubtitle: "I build modern, fast, and polished web experiences.",
+    heroCtaProjects: "See my projects",
+    heroCtaContact: "Contact",
+    heroRightSubtitle: "Not found.",
+    projectsSectionTitle: "My projects",
+    projectOneTitle: "Responsive website",
+    projectOneText: "High-performance site with flexible layout, smooth animation, and careful accessibility.",
+    projectTwoTitle: "Food delivery app",
+    projectTwoText: "Clear interface, fast ordering experience, and intuitive navigation.",
+    projectThreeTitle: "Portfolio website",
+    projectThreeText: "Modern design, strong typography, and polished presentation.",
+    projectViewButton: "View project",
+    moreProjectsButton: "More projects",
+    skillsSectionTitle: "Technologies",
+    skillHtmlText: "Semantic structure and accessibility.",
+    skillCssText: "Responsive design and Tailwind utilities.",
+    skillJsText: "Interactions, animations, and client-side logic.",
+    skillNodeText: "Fast APIs and the npm ecosystem.",
+    skillPythonText: "Backend, data, and scripts.",
+    skillPhpText: "Server-side language and PHP ecosystem.",
+    skillLaravelText: "PHP framework for web applications.",
+    skillTailwindText: "Utility-first CSS framework.",
+    skillGitText: "Versioning and collaboration.",
+    skillCppText: "Language basics and syntax.",
+    aboutKicker: "Backend & Web Developer",
+    aboutHeading: "I create clear and modern web experiences.",
+    aboutText: "I like building elegant, fast, and easy-to-use interfaces. My goal is to turn an idea into a concrete, polished, and useful product.",
+    contactTitle: "Contact me",
+    contactLead: "Reach out to discuss your project — I’ll reply quickly and with pleasure.",
+    followTitle: "Social links",
+    formName: "Name",
+    formEmail: "Email",
+    formPhone: "Phone",
+    formSubject: "Subject",
+    formMessage: "Message",
+    sendMessageButton: "Send message",
+    footerDescription: "This site presents my projects and skills. The content is protected and belongs to its author. Thanks for visiting and see you soon.",
+    footerBrand: "Sierra Kaluba",
+    footerMeta: "France | €",
+    projectsPageTitle: "More projects",
+    projectsLoadingTitle: "Loading GitHub projects...",
+    projectsLoadingText: "Cards are fetched automatically from your GitHub account.",
+    projectsStatus: "Connecting to GitHub.",
+    backToProjects: "Back to projects",
+    selectProjectTitle: "Select a project",
+    selectProjectCode: "// Click a project to see a code excerpt here."
+  }
+};
+
+function getStoredLanguage() {
+  return localStorage.getItem("site-lang") || "fr";
+}
+
+function syncToggleLabels(language) {
+  if (langToggle) {
+    const langLabel = language === "fr" ? "langToggleToEn" : "langToggleToFr";
+    const langSpan = langToggle.querySelector(".side-control-label");
+    const langIcon = langToggle.querySelector(".side-nav-icon");
+    if (langSpan) {
+      langSpan.textContent = translations[language][langLabel];
+    }
+    if (langIcon) {
+      langIcon.textContent = language === "fr" ? "FR" : "EN";
+    }
+    langToggle.dataset.lang = language;
+    langToggle.setAttribute("aria-pressed", language === "en" ? "true" : "false");
+  }
+}
+
+function applyLanguage(language, persist = true) {
+  const nextLanguage = language === "en" ? "en" : "fr";
+
+  document.documentElement.lang = nextLanguage;
+  document.body.dataset.lang = nextLanguage;
+  if (persist) {
+    localStorage.setItem("site-lang", nextLanguage);
+  }
+
+  const pageKey = document.body.dataset.page === "projects" ? "projectsTitle" : "homeTitle";
+  const translatedTitle = translations[nextLanguage][pageKey];
+  if (translatedTitle) {
+    document.title = translatedTitle;
+  }
+
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
+    const key = element.dataset.i18n;
+    const translatedText = translations[nextLanguage][key];
+    if (translatedText) {
+      element.textContent = translatedText;
+    }
+  });
+
+  document.querySelectorAll("[data-i18n-aria]").forEach((element) => {
+    const key = element.dataset.i18nAria;
+    const translatedLabel = translations[nextLanguage][key];
+    if (translatedLabel) {
+      element.setAttribute("aria-label", translatedLabel);
+    }
+  });
+
+    syncToggleLabels(nextLanguage);
+}
+
+applyLanguage(getStoredLanguage(), false);
+
+if (langToggle) {
+  langToggle.addEventListener("click", () => {
+    const nextLanguage = getStoredLanguage() === "fr" ? "en" : "fr";
+    applyLanguage(nextLanguage);
+  });
+}
 
 if (navToggleClose && navToggleOpen) {
-  navToggleClose.addEventListener("click", () => {
-    document.body.classList.add("nav-collapsed");
+  navToggleClose.addEventListener("click", (event) => {
+    // Prevent the click from bubbling to the logo (which also toggles expansion)
+    event.stopPropagation();
+
+    // If expanded panel is open on desktop, close it first
+    if (document.body.classList.contains("side-expanded")) {
+      document.body.classList.remove("side-expanded");
+      return;
+    }
+
+    if (window.innerWidth <= 768) {
+      document.body.classList.remove("mobile-nav-open");
+    } else {
+      // toggle collapsed state on desktop
+      document.body.classList.add("nav-collapsed");
+    }
   });
 
   navToggleOpen.addEventListener("click", () => {
-    document.body.classList.remove("nav-collapsed");
+    if (window.innerWidth <= 768) {
+      document.body.classList.add("mobile-nav-open");
+    } else {
+      document.body.classList.remove("nav-collapsed");
+    }
   });
 }
 
@@ -27,8 +234,64 @@ links.forEach((link) => {
     if (document.body.classList.contains("nav-collapsed")) {
       document.body.classList.remove("nav-collapsed");
     }
+    if (document.body.classList.contains("mobile-nav-open")) {
+      document.body.classList.remove("mobile-nav-open");
+    }
   });
 });
+
+// Toggle expanded side panel on desktop when clicking the logo
+const sideLogo = document.querySelector('.side-nav-logo');
+if (sideLogo) {
+  sideLogo.style.cursor = 'pointer';
+  sideLogo.addEventListener('click', (e) => {
+    if (window.innerWidth >= 769) {
+      document.body.classList.toggle('side-expanded');
+      // ensure not collapsed when expanded
+      document.body.classList.remove('nav-collapsed');
+    } else {
+      document.body.classList.toggle('mobile-nav-open');
+    }
+  });
+}
+
+const contactForm = document.getElementById("contactForm");
+const contactStatus = document.getElementById("contactStatus");
+
+if (contactForm && contactStatus) {
+  contactForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(contactForm);
+    const payload = Object.fromEntries(formData.entries());
+
+    contactStatus.textContent = "Envoi en cours...";
+    contactStatus.classList.remove("is-error", "is-success");
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.message || "Une erreur est survenue.");
+      }
+
+      contactStatus.textContent = result.message || "Votre message a bien été envoyé.";
+      contactStatus.classList.add("is-success");
+      contactForm.reset();
+    } catch (error) {
+      contactStatus.textContent = error.message || "Impossible d'envoyer le message.";
+      contactStatus.classList.add("is-error");
+    }
+  });
+}
 
 // Project code viewer (used on projects.html)
 const fallbackProjects = [

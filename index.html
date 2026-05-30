@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="bg-slate-950 text-slate-100">
+  <body class="bg-slate-950 text-slate-100" data-page="home">
     <div class="layout">
       <aside class="side-nav">
         <div class="side-nav-glass">
@@ -19,6 +19,7 @@
               class="side-nav-close"
               type="button"
               aria-label="Fermer la navigation"
+              data-i18n-aria="closeNavAria"
             >
               x
             </button>
@@ -26,39 +27,31 @@
           <nav class="side-nav-links">
             <a class="side-nav-item" href="#home">
               <span class="side-nav-icon">H</span>
-              <span>Home</span>
+              <span data-i18n="navHome">Accueil</span>
             </a>
             <a class="side-nav-item" href="#projects">
               <span class="side-nav-icon">P</span>
-              <span>Projects</span>
+              <span data-i18n="navProjects">Projets</span>
             </a>
             <a class="side-nav-item" href="#skills">
               <span class="side-nav-icon">S</span>
-              <span>Skills</span>
+              <span data-i18n="navSkills">Compétences</span>
             </a>
             <a class="side-nav-item" href="#about">
               <span class="side-nav-icon">A</span>
-              <span>About</span>
+              <span data-i18n="navAbout">À propos</span>
             </a>
             <a class="side-nav-item" href="#contact">
               <span class="side-nav-icon">C</span>
-              <span>Contact</span>
+              <span data-i18n="navContact">Contact</span>
             </a>
           </nav>
-          <div class="side-nav-projects">
-            <p class="text-xs uppercase tracking-[0.3em] text-white/50">Projects</p>
-            <div class="flex flex-col gap-2 text-xs text-white/70">
-              <span class="side-dot">UI Design</span>
-              <span class="side-dot">Landing Page</span>
-              <span class="side-dot">Portfolio</span>
-            </div>
-          </div>
           <div class="side-nav-footer">
-            <div class="side-toggle">
-              <span class="side-nav-icon">*</span>
-              <span>Theme</span>
-            </div>
-            <div class="side-avatar">AF</div>
+            <button class="side-control" id="langToggle" type="button" aria-pressed="false">
+              <span class="side-nav-icon">FR</span>
+              <span class="side-control-label" data-i18n="langToggleToEn">English</span>
+            </button>
+            <div class="side-avatar">SK</div>
           </div>
         </div>
       </aside>
@@ -69,26 +62,27 @@
         class="nav-open-btn"
         type="button"
         aria-label="Ouvrir la navigation"
+        data-i18n-aria="openNavAria"
       >
-        Menu
+        <span data-i18n="menuButton">Menu</span>
       </button>
       <section class="hero-section space-hero">
         <div class="mx-auto max-w-6xl px-6 py-20">
           <div class="space-hero-grid">
             <div class="hero-intro">
               <h2 class="hero-name">SIERRA KALUBA</h2>
-              <p class="hero-role">Backend & Web Developer</p>
+              <p class="hero-role" data-i18n="heroRole">Backend & Web Developer</p>
               <p class="hero-subtitle">
-                Je cree des experiences web modernes, rapides, et propres.
+                <span data-i18n="heroSubtitle">Je crée des expériences web modernes, rapides et propres.</span>
               </p>
               <div class="hero-actions">
-                <a class="btn btn-primary" href="#projects">Voir mes projets</a>
-                <a class="btn btn-ghost" href="#contact">Contact</a>
+                <a class="btn btn-primary" href="#projects" data-i18n="heroCtaProjects">Voir mes projets</a>
+                <a class="btn btn-ghost" href="#contact" data-i18n="heroCtaContact">Contact</a>
               </div>
             </div>
             <div class="space-hero-content hero-right">
               <h1 class="hero-title">404</h1>
-              <h1 class="hero-subtitle">Not Found.</h1>
+              <h1 class="hero-subtitle" data-i18n="heroRightSubtitle">Not Found.</h1>
             </div>
           </div>
           <div class="hero-planet" aria-hidden="true"></div>
@@ -97,31 +91,31 @@
 
       <section id="projects" class="section">
         <div class="mx-auto max-w-1xl px-6">
-          <div class="section-title">My Projects</div>
+          <div class="section-title" data-i18n="projectsSectionTitle">Mes projets</div>
           <div class="projects-split">
             <div class="projects-list">
               <article class="project-item">
-                <div class="project-title">Responsive Website</div>
+                <div class="project-title" data-i18n="projectOneTitle">Site responsive</div>
                 <p class="project-text">
-                  Site performant avec layout flexible, animation fluide, et accessibilite soignee.
+                  <span data-i18n="projectOneText">Site performant avec layout flexible, animation fluide et accessibilité soignée.</span>
                 </p>
-                <a class="btn btn-primary w-fit" href="#">Voir projet</a>
+                <a class="btn btn-primary w-fit" href="#" data-i18n="projectViewButton">Voir projet</a>
               </article>
               <article class="project-item">
-                <div class="project-title">Food Delivery App</div>
+                <div class="project-title" data-i18n="projectTwoTitle">Application de livraison</div>
                 <p class="project-text">
-                  Interface claire, experience de commande rapide, et navigation intuitive.
+                  <span data-i18n="projectTwoText">Interface claire, expérience de commande rapide et navigation intuitive.</span>
                 </p>
-                <a class="btn btn-primary w-fit" href="#">Voir projet</a>
+                <a class="btn btn-primary w-fit" href="#" data-i18n="projectViewButton">Voir projet</a>
               </article>
               <article class="project-item">
-                <div class="project-title">Portfolio Website</div>
+                <div class="project-title" data-i18n="projectThreeTitle">Site portfolio</div>
                 <p class="project-text">
-                  Design moderne, typographie forte, et mise en valeur du travail.
+                  <span data-i18n="projectThreeText">Design moderne, typographie forte et mise en valeur du travail.</span>
                 </p>
-                <a class="btn btn-primary w-fit" href="#">Voir projet</a>
+                <a class="btn btn-primary w-fit" href="#" data-i18n="projectViewButton">Voir projet</a>
               </article>
-              <a class="btn btn-ghost w-fit" href="projects.html">Plus de projets</a>
+              <a class="btn btn-ghost w-fit" href="projects.html" data-i18n="moreProjectsButton">Plus de projets</a>
             </div>
             <div class="project-code">
               <div class="code-header">
@@ -155,89 +149,7 @@ def greet(name):
     return f"Bonjour {name}"
 Liste
 users = ["Alice", "Bob", "Charlie"]
-Parcourir une liste
-for user in users:
-    print(user)
-Compréhension de liste (très populaire)
-squares = [x * x for x in range(10)]
-Dictionnaire
-user = {
-    "name": "Samuel",
-    "age": 20
-}
-Gestion des erreurs
-try:
-    result = 10 / 0
-except Exception as e:
-    print(e)
-Lire un fichier
-with open("file.txt", "r") as file:
-    content = file.read()
-Écrire dans un fichier
-with open("file.txt", "w") as file:
-    file.write("Bonjour")
-Importer un module
-import os
-import sys
-import json
-Classe
-class User:
-    def __init__(self, name):
-        self.name = name
-Récupérer une entrée utilisateur
-name = input("Votre nom : ")
-JSON
-import json
-
-data = json.loads(json_string)
-Requête HTTP
-import requests
-
-response = requests.get("https://api.example.com")
-data = response.json()
-Flask (Backend Web)
-from flask import Flask
-
-app = Flask(__name__)
-
-@app.route("/")
-def home():
-    return "Hello World"
-FastAPI (très populaire actuellement)
-from fastapi import FastAPI
-
-app = FastAPI()
-
-@app.get("/")
-def root():
-    return {"message": "Hello World"}
-Data Science
-import pandas as pd
-import numpy as np
-Intelligence Artificielle
-import torch
-from transformers import pipeline
-Ligne Python devenue un mème chez les développeurs
-if __name__ == "__main__":
-    main()
-Les 10 lignes que presque tous les développeurs Python connaissent
-print("Hello World")
-if __name__ == "__main__":
-    main()
-for i in range(10):
-    print(i)
-with open("file.txt") as f:
-    data = f.read()
-import os
-import requests
-try:
-    pass
-except Exception as e:
-    print(e)
-items = [x for x in range(10)]
-class User:
-    pass
-response = requests.get(url)</code></pre>
+</code></pre>
             </div>
           </div>
         </div>
@@ -245,70 +157,212 @@ response = requests.get(url)</code></pre>
 
       <section id="skills" class="section">
         <div class="mx-auto max-w-6xl px-6">
-          <div class="section-title">Technologies</div>
-          <div class="grid gap-6 md:grid-cols-3">
-            <article class="card subtle">
-              <div class="skill-icon">&lt;/&gt;</div>
-              <h3 class="card-title">HTML</h3>
-              <p class="card-text">
-                Semantic structure, accessibility, and clean markup for solid foundations.
-              </p>
-            </article>
-            <article class="card subtle">
-              <div class="skill-icon">TW</div>
-              <h3 class="card-title">Tailwind CSS</h3>
-              <p class="card-text">
-                Utility-first styling with consistent spacing, color, and responsive layouts.
-              </p>
-            </article>
-            <article class="card subtle">
-              <div class="skill-icon">JS</div>
-              <h3 class="card-title">JavaScript</h3>
-              <p class="card-text">
-                Interactive UI, animations, and smooth UX behavior powered by modern JS.
-              </p>
-            </article>
+          <div class="section-title" data-i18n="skillsSectionTitle">Technologies</div>
+          <div class="skills-grid">
+            <div class="skill-item" style="--pct:70; --color: #ef4444;">
+              <div class="skill-bg-icon"><img class="skill-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 logo"/></div>
+              <div class="skill-ring" aria-hidden="true">
+                <div class="ring" style="--p:70; --c:var(--color);"></div>
+                <div class="ring-center">
+                  <span class="skill-percent">70%</span>
+                </div>
+              </div>
+              <h4 class="skill-name">HTML</h4>
+              <p class="skill-desc" data-i18n="skillHtmlText">Structure sémantique et accessibilité.</p>
+            </div>
+            <div class="skill-item" style="--pct:60; --color: #3b82f6;">
+              <div class="skill-bg-icon"><img class="skill-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 logo"/></div>
+              <div class="skill-ring" aria-hidden="true">
+                <div class="ring" style="--p:60; --c:var(--color);"></div>
+                <div class="ring-center">
+                  <span class="skill-percent">60%</span>
+                </div>
+              </div>
+              <h4 class="skill-name">CSS</h4>
+              <p class="skill-desc" data-i18n="skillCssText">Design responsive et utilities (Tailwind).</p>
+            </div>
+            <div class="skill-item" style="--pct:50; --color: #f59e0b;">
+              <div class="skill-bg-icon"><img class="skill-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript logo"/></div>
+              <div class="skill-ring" aria-hidden="true">
+                <div class="ring" style="--p:50; --c:var(--color);"></div>
+                <div class="ring-center">
+                  <span class="skill-percent">50%</span>
+                </div>
+              </div>
+              <h4 class="skill-name">JavaScript</h4>
+              <p class="skill-desc" data-i18n="skillJsText">Interactions, animations et logique client.</p>
+            </div>
+            <div class="skill-item" style="--pct:40; --color: #10b981;">
+              <div class="skill-bg-icon"><img class="skill-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js logo"/></div>
+                <div class="skill-ring" aria-hidden="true">
+              <div class="ring" style="--p:40; --c:var(--color);"></div>
+                <div class="ring-center">
+                  <span class="skill-percent">40%</span>
+                </div>
+              </div>
+              <h4 class="skill-name">Node.js</h4>
+              <p class="skill-desc" data-i18n="skillNodeText">APIs rapides et écosystème npm.</p>
+            </div>
+            <div class="skill-item" style="--pct:70; --color: #60a5fa;">
+              <div class="skill-bg-icon"><img class="skill-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python logo"/></div>
+              <div class="skill-ring" aria-hidden="true">
+                <div class="ring" style="--p:70; --c:var(--color);"></div>
+                <div class="ring-center">
+                  <span class="skill-percent">70%</span>
+                </div>
+              </div>
+              <h4 class="skill-name">Python</h4>
+              <p class="skill-desc" data-i18n="skillPythonText">Backend, data et scripts.</p>
+            </div>
+            <div class="skill-item" style="--pct:30; --color: #8993be;">
+              <div class="skill-bg-icon"><img class="skill-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP logo"/></div>
+              <div class="skill-ring" aria-hidden="true">
+                <div class="ring" style="--p:30; --c:var(--color);"></div>
+                <div class="ring-center">
+                  <span class="skill-percent">30%</span>
+                </div>
+              </div>
+              <h4 class="skill-name">PHP</h4>
+              <p class="skill-desc" data-i18n="skillPhpText">Langage serveur et écosystème PHP.</p>
+            </div>
+            <div class="skill-item" style="--pct:40; --color: #ff2d20;">
+              <div class="skill-bg-icon"><img class="skill-logo" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/laravel/laravel-original.svg" alt="Laravel logo"/></div>
+              <div class="skill-ring" aria-hidden="true">
+                <div class="ring" style="--p:40; --c:var(--color);"></div>
+                <div class="ring-center">
+                  <span class="skill-percent">40%</span>
+                </div>
+              </div>
+              <h4 class="skill-name">Laravel</h4>
+              <p class="skill-desc" data-i18n="skillLaravelText">Framework PHP pour applications web.</p>
+            </div>
+            <div class="skill-item" style="--pct:50; --color: #06b6d4;">
+              <div class="skill-bg-icon"><img class="skill-logo" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS logo"/></div>
+              <div class="skill-ring" aria-hidden="true">
+                <div class="ring" style="--p:50; --c:var(--color);"></div>
+                <div class="ring-center">
+                  <span class="skill-percent">50%</span>
+                </div>
+              </div>
+              <h4 class="skill-name">Tailwind CSS</h4>
+              <p class="skill-desc" data-i18n="skillTailwindText">Framework CSS utility-first.</p>
+            </div>
+            <div class="skill-item" style="--pct:50; --color: #f97316;">
+              <div class="skill-bg-icon"><img class="skill-logo" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" alt="Git logo"/></div>
+              <div class="skill-ring" aria-hidden="true">
+                <div class="ring" style="--p:50; --c:var(--color);"></div>
+                <div class="ring-center">
+                  <span class="skill-percent">50%</span>
+                </div>
+              </div>
+              <h4 class="skill-name">Git</h4>
+              <p class="skill-desc" data-i18n="skillGitText">Versioning et collaboration.</p>
+            </div>
+            <div class="skill-item" style="--pct:1; --color: #2563eb;">
+              <div class="skill-bg-icon"><img class="skill-logo" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="C++ logo"/></div>
+              <div class="skill-ring" aria-hidden="true">
+                <div class="ring" style="--p:1; --c:var(--color);"></div>
+                <div class="ring-center">
+                  <span class="skill-percent">1%</span>
+                </div>
+              </div>
+              <h4 class="skill-name">C++</h4>
+              <p class="skill-desc" data-i18n="skillCppText">Bases du langage et syntaxe.</p>
+            </div>
           </div>
         </div>
       </section>
 
       <section id="about" class="section">
-        <div class="mx-auto max-w-4xl px-6 text-center">
-          <div class="section-title">About Me</div>
-          <p class="text-base text-slate-300">
-            I am a passionate web developer and designer focused on creating clean, efficient, and user-friendly websites.
-            I love turning ideas into reality through thoughtful layouts and strong visual identity.
-          </p>
-          <div class="mt-6">
-            <a class="btn btn-primary" href="#contact">Get in Touch</a>
+        <div class="mx-auto max-w-6xl px-6">
+          <div class="about-showcase">
+            <div class="about-copy">
+              <p class="about-kicker" data-i18n="aboutKicker">Backend & Web Developer</p>
+              <h2 class="about-heading" data-i18n="aboutHeading">Je crée des expériences web claires et modernes.</h2>
+              <p class="about-text">
+                <span data-i18n="aboutText">J’aime construire des interfaces élégantes, rapides et faciles à utiliser. Mon objectif est de transformer une idée en un produit concret, soigné et utile.</span>
+              </p>
+              
+            </div>
+
+            <div class="about-visual" aria-hidden="true">
+              <div class="about-blob"></div>
+              <div class="about-frame">
+                <img
+                  class="about-portrait"
+                  src="assets/photo%20(1).jpg"
+                  alt="Portrait de Sierra Kaluba"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <section id="contact" class="section">
-        <div class="mx-auto max-w-3xl px-6">
-          <div class="section-title text-center">Contact Me</div>
-          <form class="card p-8">
-            <div class="grid gap-4">
-              <input class="input" type="text" name="name" placeholder="Name" />
-              <input class="input" type="email" name="email" placeholder="Email" />
-              <textarea class="input h-32 resize-none" name="message" placeholder="Message"></textarea>
+        <div class="mx-auto max-w-6xl px-6">
+          <div class="contact-panel">
+            <div class="contact-grid">
+            <div class="contact-left">
+              <h2 class="section-title" data-i18n="contactTitle">Contactez-moi</h2>
+              <p class="contact-lead" data-i18n="contactLead">Contactez-moi pour discuter de votre projet — je vous répondrai rapidement et avec plaisir.</p>
+              <div class="follow-block">
+                <div class="follow-title" data-i18n="followTitle">Réseaux sociaux</div>
+                <div class="follow-icons">
+                    <a class="social-link" href="#" aria-label="Facebook">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07c0 5.02 3.66 9.18 8.44 9.93v-7.03H8.1v-2.9h2.34V9.41c0-2.32 1.38-3.6 3.5-3.6.99 0 2.03.18 2.03.18v2.24h-1.15c-1.14 0-1.5.71-1.5 1.44v1.73h2.56l-.41 2.9h-2.15v7.03C18.34 21.25 22 17.09 22 12.07z" fill="currentColor"/></svg>
+                    </a>
+                    <a class="social-link" href="#" aria-label="Twitter">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 5.92c-.63.28-1.3.47-2 .55a3.48 3.48 0 0 0 1.53-1.92c-.68.4-1.43.68-2.23.84A3.47 3.47 0 0 0 12.3 8.5c0 .27.03.54.09.8A9.86 9.86 0 0 1 3.1 4.9a3.47 3.47 0 0 0 1.07 4.63c-.53-.02-1.03-.16-1.47-.4v.04c0 1.67 1.18 3.06 2.74 3.38-.45.12-.93.16-1.42.06.4 1.24 1.5 2.14 2.82 2.17A6.98 6.98 0 0 1 2 18.57 9.86 9.86 0 0 0 7.29 20c6.62 0 10.25-5.48 10.25-10.24v-.47c.7-.5 1.29-1.11 1.76-1.82-.64.28-1.32.47-2.03.56z" fill="currentColor"/></svg>
+                    </a>
+                    <a class="social-link" href="#" aria-label="LinkedIn">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM8.34 18.34H5.67V9.33h2.67v9.01zM7 8.1a1.54 1.54 0 1 1 0-3.08 1.54 1.54 0 0 1 0 3.08zM19 18.34h-2.66v-4.57c0-1.09-.02-2.49-1.52-2.49-1.52 0-1.75 1.18-1.75 2.41v4.65H10.5V9.33h2.56v1.24h.04c.36-.68 1.24-1.39 2.55-1.39 2.73 0 3.23 1.8 3.23 4.14v4.02z" fill="currentColor"/></svg>
+                    </a>
+                    <a class="social-link" href="#" aria-label="Instagram">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6.2A4.8 4.8 0 1 0 16.8 13 4.8 4.8 0 0 0 12 8.2zM18.4 6a1.1 1.1 0 1 0 1.1 1.1A1.1 1.1 0 0 0 18.4 6z" fill="currentColor"/></svg>
+                    </a>
+                  </div>
+              </div>
             </div>
-            <button class="btn btn-primary mt-6 w-full" type="submit">Send Message</button>
-          </form>
+
+            <div class="contact-right">
+              <form class="card form-card" id="contactForm" action="/api/contact" method="post" novalidate>
+                <div class="form-grid">
+                  <label class="field"><input class="input" type="text" name="name" placeholder=" " required><span class="label-text" data-i18n="formName">Nom</span></label>
+                  <label class="field"><input class="input" type="email" name="email" placeholder=" " required><span class="label-text" data-i18n="formEmail">Email</span></label>
+                  <label class="field"><input class="input" type="tel" name="phone" placeholder=" "><span class="label-text" data-i18n="formPhone">Téléphone</span></label>
+                  <label class="field"><input class="input" type="text" name="subject" placeholder=" " ><span class="label-text" data-i18n="formSubject">Sujet</span></label>
+                  <label class="field area"><textarea class="input message-input" name="message" placeholder=" " required></textarea><span class="label-text" data-i18n="formMessage">Message</span></label>
+                </div>
+                <br>
+                <div class="form-actions">
+                  <p class="contact-status" id="contactStatus" aria-live="polite"></p>
+                  <button class="btn btn-primary" type="submit" data-i18n="sendMessageButton">Envoyer le message</button>
+                </div>
+              </form>
+            </div>
+            </div>
+          </div>
         </div>
       </section>
-      <footer class="border-t border-white/10 py-8">
-        <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 text-sm text-slate-400 md:flex-row">
-          <div class="flex items-center gap-3">
-            <div class="logo-mark">AF</div>
-            <span>Created by Ayesha</span>
+      <footer id="footer" class="site-footer">
+        <div class="footer-inner mx-auto max-w-6xl px-6">
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Facebook">f</a>
+            <a href="#" class="social-link" aria-label="Twitter">t</a>
+            <a href="#" class="social-link" aria-label="Instagram">ig</a>
+            <a href="#" class="social-link" aria-label="YouTube">yt</a>
+            <a href="#" class="social-link" aria-label="Pinterest">p</a>
           </div>
-          <div class="flex items-center gap-6">
-            <span>+123-456-7890</span>
-            <span>ayesha@example.com</span>
+
+          <p class="footer-desc">
+            <span data-i18n="footerDescription">Ce site présente mes projets et compétences. Le contenu est protégé et appartient à son auteur. Merci de votre visite et à bientôt.</span>
+          </p>
+
+          <div class="footer-brand">
+            <div class="footer-logo" data-i18n="footerBrand">Sierra Kaluba</div>
+            <div class="footer-meta" data-i18n="footerMeta">France | €</div>
           </div>
-          <span>All rights reserved 2026</span>
         </div>
       </footer>
     </main>

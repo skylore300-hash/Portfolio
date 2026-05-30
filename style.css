@@ -12,6 +12,7 @@ body {
   background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.16), transparent 45%),
     radial-gradient(circle at 10% 70%, rgba(148, 163, 184, 0.1), transparent 50%),
     linear-gradient(160deg, #0b1120 0%, #0f172a 55%, #0b1324 100%);
+  transition: background 220ms ease, color 220ms ease;
 }
 
 .layout {
@@ -123,6 +124,57 @@ body {
   margin-top: auto;
   display: grid;
   gap: 1rem;
+}
+
+.side-control {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(226, 232, 240, 0.85);
+  text-align: left;
+  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+.side-control > * {
+  position: relative;
+  z-index: 1;
+}
+
+.side-control:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.side-control-label {
+  font-size: 0.8rem;
+}
+
+#langToggle::after {
+  content: "🇫🇷";
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  line-height: 1;
+  opacity: 0.22;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#langToggle[data-lang="en"]::after {
+  content: "🇬🇧";
+}
+
+#langToggle {
+  padding-right: 2.7rem;
 }
 
 .side-toggle {
@@ -243,6 +295,26 @@ body {
   justify-content: center;
 }
 
+.nav-collapsed .side-control {
+  width: auto;
+  min-width: 2.6rem;
+  padding: 0.6rem;
+  justify-content: center;
+}
+
+.nav-collapsed .side-control-label {
+  display: none;
+}
+
+.nav-collapsed #langToggle {
+  padding-right: 0.6rem;
+}
+
+.nav-collapsed #langToggle::after {
+  content: none;
+  display: none;
+}
+
 .nav-collapsed .side-toggle span:last-child {
   display: none;
 }
@@ -326,12 +398,231 @@ main#projects .mx-auto {
   width: 100%;
 }
 
+/* Mobile bottom navigation: transform side-nav into a bottom pill */
+@media (max-width: 768px) {
+  .side-nav {
+    position: fixed !important; /* ensure fixed on viewport */
+    top: auto;
+    bottom: calc(1rem + env(safe-area-inset-bottom));
+    left: 1rem; /* dock to left side */
+    transform: none;
+    width: min(360px, calc(100% - 2rem));
+    max-width: 360px;
+    height: 72px;
+    border-radius: 999px;
+    z-index: 9999;
+    right: auto;
+    will-change: transform;
+  }
+
+  .side-nav-glass {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.8rem;
+    gap: 0.25rem;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(15,23,42,0.85), rgba(11,19,36,0.6));
+    box-shadow: 0 18px 40px rgba(2,6,23,0.6);
+  }
+
+  .side-nav-logo { display: none; }
+  .side-nav-close { display: none; }
+
+  .side-nav-links {
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .side-nav-item {
+    padding: 0.35rem 0.6rem;
+    border-radius: 12px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.25rem;
+    min-width: 48px;
+  }
+
+  .side-nav-item span:nth-child(2) { /* label */
+    display: none;
+  }
+
+  .side-nav-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    background: transparent;
+    color: rgba(226,232,240,0.9);
+  }
+
+  /* active indicator at top of active item */
+  .side-nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 4px;
+    border-radius: 4px 4px 0 0;
+    background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+    box-shadow: 0 4px 16px rgba(59,130,246,0.28);
+  }
+
+  .side-nav-item { position: relative; }
+
+  .side-nav-footer { display: none; }
+
+  .page-content { padding-left: 0; padding-bottom: 110px; }
+
+  /* ensure content isn't covered on very narrow screens when nav is left-docked */
+  @media (max-width: 420px) {
+    .side-nav { left: 0.5rem; width: calc(100% - 1rem); max-width: none; }
+    .page-content { padding-left: 0; padding-bottom: 120px; }
+  }
+
+  .nav-open-btn { display: none; }
+}
+
 .section-title {
   font-family: "Rockwell", "Georgia", serif;
   font-size: 2rem;
   text-align: center;
   margin-bottom: 2.5rem;
   color: #f8fafc;
+}
+
+.about-showcase {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  align-items: center;
+  padding: 3rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2rem;
+  background:
+    radial-gradient(circle at 78% 20%, rgba(110, 231, 183, 0.18), transparent 30%),
+    radial-gradient(circle at 18% 18%, rgba(168, 85, 247, 0.22), transparent 24%),
+    linear-gradient(180deg, rgba(10, 15, 28, 0.96), rgba(7, 11, 20, 0.98));
+  box-shadow: 0 30px 90px rgba(2, 6, 23, 0.55);
+}
+
+.about-showcase::before,
+.about-showcase::after {
+  content: "";
+  position: absolute;
+  inset: auto;
+  pointer-events: none;
+}
+
+.about-showcase::before {
+  width: 20rem;
+  height: 20rem;
+  right: -7rem;
+  top: -6rem;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.22), transparent 68%);
+  filter: blur(18px);
+}
+
+.about-showcase::after {
+  width: 22rem;
+  height: 22rem;
+  left: -8rem;
+  bottom: -10rem;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.16), transparent 70%);
+  filter: blur(22px);
+}
+
+.about-copy {
+  position: relative;
+  z-index: 1;
+  padding-left: 0.5rem;
+}
+
+.about-title-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.95rem 1.5rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.92), rgba(99, 102, 241, 0.92));
+  color: #ffffff;
+  font-family: "Rockwell", "Georgia", serif;
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  box-shadow: 0 14px 35px rgba(99, 102, 241, 0.28);
+}
+
+.about-kicker {
+  margin-top: 1.5rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  color: rgba(226, 232, 240, 0.55);
+}
+
+.about-heading {
+  margin-top: 1rem;
+  font-family: "Rockwell", "Georgia", serif;
+  font-size: clamp(2.3rem, 4.8vw, 4.6rem);
+  line-height: 0.98;
+  color: #f8fafc;
+  max-width: 12ch;
+}
+
+.about-text {
+  margin-top: 1.5rem;
+  max-width: 42rem;
+  color: rgba(226, 232, 240, 0.78);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.about-actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.about-visual {
+  position: relative;
+  min-height: 34rem;
+  display: grid;
+  place-items: center;
+}
+
+.about-blob {
+  position: absolute;
+  inset: 12% 14% 10% 14%;
+  border-radius: 32% 32% 18% 18% / 18% 18% 28% 28%;
+  background: linear-gradient(180deg, rgba(103, 232, 249, 0.95), rgba(56, 189, 248, 0.72) 45%, rgba(15, 23, 42, 0.08) 100%);
+  box-shadow: 0 25px 70px rgba(34, 211, 238, 0.18);
+  transform: rotate(-2deg);
+}
+
+.about-frame {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 22rem);
+  height: 33rem;
+  padding: 0.6rem;
+  border-radius: 30% 30% 16% 16% / 18% 18% 24% 24%;
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 30px 60px rgba(2, 6, 23, 0.32);
+}
+
+.about-portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 28% 28% 14% 14% / 16% 16% 22% 22%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.22));
 }
 
 .hero-section {
@@ -680,6 +971,131 @@ main#projects .mx-auto {
   letter-spacing: 0.2em;
 }
 
+/* Skills circular badges */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2.2rem;
+  align-items: center;
+}
+.skill-item {
+  position: relative;
+  text-align: center;
+  padding-top: 1rem;
+}
+.skill-bg-icon {
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 110px;
+  display: grid;
+  place-items: center;
+  pointer-events: auto;
+  z-index: 3;
+}
+.skill-logo {
+  width: 110px;
+  height: 110px;
+  opacity: 0;
+  transform: scale(0.9);
+  filter: drop-shadow(0 18px 36px rgba(0,0,0,0.55));
+  transition: transform 260ms cubic-bezier(.2,.9,.3,1), opacity 260ms ease;
+  mix-blend-mode: normal;
+  will-change: opacity, transform;
+}
+
+.node-sticker {
+  mix-blend-mode: multiply;
+  filter: brightness(0.98) contrast(1.15) saturate(1.05);
+}
+
+.skill-item:hover .node-sticker,
+.skill-item:focus-within .node-sticker,
+.skill-bg-icon:hover .node-sticker {
+  mix-blend-mode: multiply;
+}
+
+.skill-item:hover .skill-logo {
+  transform: scale(1.06);
+  opacity: 0.28;
+}
+
+/* Hover logo: enlarge and make more visible */
+.skill-item:hover .skill-logo,
+.skill-item:focus-within .skill-logo,
+.skill-bg-icon:hover .skill-logo {
+  transform: scale(1.12);
+  opacity: 1;
+  filter: drop-shadow(0 22px 48px rgba(0,0,0,0.65));
+}
+
+/* When logo hovered, blur the percentage inside the following ring */
+.skill-percent {
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  opacity: 0.6;
+  transform: scale(1);
+  transition: transform 220ms ease, opacity 220ms ease, filter 220ms ease;
+}
+
+/* Quand on survole le logo, rendre le pourcentage clairement visible */
+.skill-item:hover .skill-percent,
+.skill-item:focus-within .skill-percent {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.12);
+}
+.skill-ring {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 0.8rem auto;
+  position: relative;
+}
+.ring {
+  --size: 110px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 999px;
+  background: conic-gradient(var(--c) calc(var(--p) * 1%), rgba(255,255,255,0.08) 0deg);
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+.ring::before {
+  content: "";
+  width: calc(var(--size) - 22px);
+  height: calc(var(--size) - 22px);
+  border-radius: 999px;
+  background: rgba(15,23,42,0.7);
+  position: absolute;
+}
+.ring-center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+.skill-percent {
+  font-weight: 700;
+  color: #fff;
+}
+.skill-name {
+  margin-top: 0.5rem;
+  font-family: "Rockwell", Georgia, serif;
+  font-size: 1rem;
+}
+.skill-desc {
+  font-size: 0.85rem;
+  color: rgba(226,232,240,0.7);
+}
+
+@media (max-width: 640px) {
+  .ring { --size: 96px; }
+  .skill-bg-icon { font-size: 4.5rem; top: 14px; }
+}
+
 .input {
   width: 100%;
   border-radius: 0.9rem;
@@ -728,6 +1144,98 @@ main#projects .mx-auto {
   }
 
   .hero-right {
+
+/* New contact layout (two columns + form card) */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 1rem;
+  align-items: start;
+}
+.contact-left {
+  padding: 2rem 0 1rem 0;
+}
+.contact-heading {
+  font-family: "Rockwell", Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 0 0 1rem 0;
+  color: #fff;
+}
+.contact-lead {
+  color: rgba(248,250,252,0.68);
+  max-width: 40ch;
+  margin-bottom: 1.25rem;
+}
+.contact-ctas {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+.follow-block {
+  margin-top: 1.2rem;
+  /* augmente l'espace à droite pour séparer les icônes du formulaire */
+  margin-right: 1.4rem;
+}
+.follow-title { color: rgba(248,250,252,0.72); margin-bottom: 0.6rem; font-weight:700 }
+.follow-icons { display:flex; gap:12px }
+.social-link { width:36px; height:36px; display:inline-grid; place-items:center; border-radius:6px; background:rgba(255,255,255,0.02); color:rgba(255,255,255,0.9); text-decoration:none }
+
+.contact-right .form-card {
+  background: linear-gradient(180deg, rgba(8,10,16,0.86), rgba(6,8,12,0.9));
+  border-radius: 1rem;
+  padding: 1.6rem;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+.message-input { grid-column: 1 / -1; height: 160px }
+.form-actions { display:flex; justify-content:flex-end; margin-top:0.8rem }
+
+@media (max-width: 900px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .contact-right { order: 2; }
+  .contact-left { order: 1; }
+  .contact-right .form-card { padding: 1rem }
+  .message-input { height: 120px }
+}
+
+/* Typography polish */
+:root {
+  --ui-font: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+body {
+  font-family: var(--ui-font);
+}
+.contact-heading {
+  font-family: "Rockwell", Georgia, serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+  color: #fff;
+  font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+}
+.contact-lead {
+  font-size: 1.02rem;
+  line-height: 1.8;
+  color: rgba(248,250,252,0.72);
+}
+.follow-title { text-transform: none; font-weight:600; font-size:0.95rem; color: rgba(248,250,252,0.74); }
+.follow-icons .social-link { font-weight:700; font-size:0.9rem; }
+.contact-left .btn-ghost { font-weight:600 }
+
+.form-card .input {
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: #fff;
+}
+.form-card .input::placeholder { color: rgba(255,255,255,0.46); }
+.form-card .message-input { font-size: 0.98rem; line-height:1.6 }
+
+.btn { font-weight:700; letter-spacing:0.06em }
+
+
     text-align: left;
     justify-items: start;
     margin-left: 0;
@@ -770,4 +1278,304 @@ main#projects .mx-auto {
   .projects-split {
     grid-template-columns: 1fr;
   }
+
+  .about-showcase {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+
+  .about-visual {
+    min-height: 24rem;
+  }
+
+  .about-frame {
+    width: min(100%, 18rem);
+    height: 24rem;
+  }
 }
+
+/* Footer styles */
+.site-footer {
+  background: radial-gradient(circle at 20% 10%, rgba(59,130,246,0.06), transparent 18%),
+    linear-gradient(180deg, rgba(11,19,36,0.94), rgba(7,11,20,0.98));
+  color: rgba(248,250,252,0.92);
+  padding: 48px 0;
+  border-top: 1px solid rgba(59,130,246,0.06);
+}
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  text-align: center;
+}
+.footer-social {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+.social-link {
+  width: 36px;
+  height: 36px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.02);
+  color: rgba(255,255,255,0.9);
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 180ms ease, background 180ms ease, color 180ms ease;
+}
+.social-link:hover {
+  transform: translateY(-3px) scale(1.03);
+  background: linear-gradient(90deg, rgba(59,130,246,0.18), rgba(168,85,247,0.12));
+  color: #fff;
+}
+.footer-desc {
+  max-width: 840px;
+  color: rgba(248,250,252,0.65);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0 auto;
+}
+.footer-brand {
+  display: grid;
+  gap: 6px;
+  align-items: center;
+}
+.footer-logo {
+  font-family: "Rockwell", Georgia, serif;
+  font-size: 28px;
+  color: #ffffff;
+  letter-spacing: 0.06em;
+}
+.footer-meta {
+  color: rgba(248,250,252,0.5);
+  font-size: 0.85rem;
+}
+
+@media (min-width: 768px) {
+  .footer-inner {
+    padding: 0 12px;
+  }
+}
+
+/* Animated color gradient for social icons */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.social-link {
+  background: linear-gradient(90deg, rgba(59,130,246,0.12), rgba(168,85,247,0.08));
+  background-size: 200% 200%;
+  transition: transform 200ms ease, box-shadow 200ms ease, color 180ms ease;
+  display: inline-grid;
+  place-items: center;
+  margin: 1rem;
+
+}
+.social-link svg { width: 18px; height: 18px; transition: transform 180ms ease, fill 180ms ease; }
+.social-link:hover,
+.social-link:focus {
+  animation: gradientShift 3s linear infinite;
+  transform: translateY(-4px) scale(1.06);
+  box-shadow: 0 12px 30px rgba(59,130,246,0.12);
+  color: #ffffff;
+}
+.social-link:focus { outline: 2px solid rgba(59,130,246,0.12); outline-offset: 3px }
+
+
+/* Final visual polish for Contact section (overrides) */
+.contact-left {
+  padding-left: 1rem;
+  padding-top: 0.6rem;
+}
+.contact-heading { letter-spacing: -0.02em; font-weight:700 }
+.contact-lead { font-size: 1rem; }
+.contact-ctas .btn-ghost { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); }
+
+/* Form card deeper look */
+.contact-right .form-card {
+  border-radius: 1.25rem;
+  padding: 1.8rem;
+  background: linear-gradient(180deg, rgba(8,10,16,0.92), rgba(4,6,10,0.88));
+  border: 1px solid rgba(255,255,255,0.035);
+  box-shadow: 0 28px 80px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+/* Inputs polished */
+.contact-right .form-card .input {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  padding: 0.85rem 1rem;
+  border-radius: 0.75rem;
+}
+.contact-right .form-card .input:focus {
+  border-color: rgba(99,102,241,0.9);
+  box-shadow: 0 10px 30px rgba(99,102,241,0.06);
+}
+.contact-right .form-card .message-input { min-height: 140px }
+
+/* Primary button stronger */
+.contact-right .form-card .btn-primary {
+  background: linear-gradient(90deg, #3b82f6, #a855f7);
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+}
+
+/* Follow icons circular and subtle */
+.follow-icons .social-link { width:36px; height:36px; border-radius:999px; display:inline-grid; place-items:center; }
+.follow-icons .social-link:hover { transform: translateY(-4px) scale(1.04); }
+
+/* Decorative dot-grid subtle */
+.contact-left::before {
+  content: "";
+  position: absolute;
+  left: 12%;
+  top: 52%;
+  width: 220px;
+  height: 140px;
+  background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 12px 12px;
+  opacity: 0.45;
+  transform: translate(-10%, -10%);
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .contact-left::before { display:none }
+}
+
+/* Contact panel (centered large card) */
+.contact-panel {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+.contact-panel > .contact-grid {
+  width: min(680px, 100%);
+  background: linear-gradient(180deg, rgba(11,19,36,0.94), rgba(7,11,20,0.98));
+  border-radius: 10px;
+  padding: 0.8rem;
+  box-shadow: 0 12px 30px rgba(2,6,23,0.38);
+  border: 1px solid rgba(59,130,246,0.03);
+  position: relative;
+  overflow: hidden;
+}
+.contact-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,15,28,0.06), rgba(8,10,16,0.2));
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Underlined inputs for a sleek form look */
+.contact-grid .form-card .input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-radius: 0;
+  padding: 0.45rem 0.22rem 0.32rem 0;
+  font-size: 0.92rem;
+}
+.contact-grid .form-card .input::placeholder { color: transparent }
+.contact-grid .form-card .label-text {
+  left: 0.2rem;
+  top: -0.8rem;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.65);
+  transform: none;
+}
+.contact-grid .form-card .field .label-text { position: relative }
+.contact-grid .form-card .input:focus { border-bottom-color: var(--accent); box-shadow: none }
+
+/* Make message textarea taller and with same underline style */
+.contact-grid .form-card .message-input { min-height: 100px; padding-top: 0.45rem }
+
+/* Blue rounded submit to match reference */
+.contact-grid .form-card .btn-primary {
+  background: linear-gradient(90deg, rgba(59,130,246,1), rgba(99,102,241,0.95));
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.92rem;
+}
+
+.contact-status {
+  min-height: 1.2rem;
+  margin: 0 0 0.25rem;
+  font-size: 0.85rem;
+  color: rgba(248, 250, 252, 0.72);
+}
+
+.contact-status.is-success {
+  color: #86efac;
+}
+
+.contact-status.is-error {
+  color: #fca5a5;
+}
+
+@media (max-width: 900px) {
+  .contact-panel { padding: 1.2rem 1rem }
+  .contact-panel > .contact-grid { padding: 1rem }
+  .contact-grid .form-card .message-input { min-height: 120px }
+}
+
+
+/* Floating labels and extra polish */
+.field { position: relative; display: block; }
+.field .label-text {
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
+  transition: transform 180ms ease, font-size 160ms ease, top 160ms ease;
+  pointer-events: none;
+}
+.field .input {
+  padding: 1.1rem 1rem 0.6rem 1rem;
+  background: transparent;
+}
+.field input:focus + .label-text,
+.field textarea:focus + .label-text,
+.field input:not(:placeholder-shown) + .label-text,
+.field textarea:not(:placeholder-shown) + .label-text {
+  transform: translateY(-10px) scale(0.92);
+  font-size: 0.78rem;
+  color: rgba(168,85,247,0.98);
+}
+.field.area .label-text { top: 14px }
+
+/* Animated subtle glow behind the left column */
+.contact-left .accent-glow {
+  position: absolute;
+  left: -6rem;
+  top: -6rem;
+  width: 320px;
+  height: 320px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 30%, rgba(59,130,246,0.35), rgba(168,85,247,0.12) 45%, transparent 60%);
+  filter: blur(28px);
+  opacity: 0.95;
+  animation: glowMove 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes glowMove {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(6px) scale(1.02); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* Button arrow animation */
+.btn-arrow { margin-left: 8px; transform: translateX(0); transition: transform 220ms ease; }
+.form-card .btn-primary:hover .btn-arrow { transform: translateX(6px); }
+
+
+
