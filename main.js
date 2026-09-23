@@ -211,7 +211,11 @@ if (navToggleClose && navToggleOpen) {
 
   navToggleOpen.addEventListener("click", () => {
     if (window.innerWidth <= 768) {
-      document.body.classList.add("mobile-nav-open");
+      const isOpen = document.body.classList.toggle("mobile-nav-open");
+      // update button state
+      navToggleOpen.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      const span = navToggleOpen.querySelector('span');
+      if (span) span.textContent = isOpen ? translations[getStoredLanguage()].closeNavAria || 'Fermer' : translations[getStoredLanguage()].menuButton || 'Menu';
     } else {
       document.body.classList.remove("nav-collapsed");
     }
@@ -254,6 +258,28 @@ if (sideLogo) {
     }
   });
 }
+
+// Close mobile nav when clicking outside or pressing Escape
+document.addEventListener('click', (e) => {
+  if (!document.body.classList.contains('mobile-nav-open')) return;
+  const clickedInside = e.target.closest('.side-nav') || e.target.closest('#navToggleOpen');
+  if (!clickedInside) {
+    document.body.classList.remove('mobile-nav-open');
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && document.body.classList.contains('mobile-nav-open')) {
+    document.body.classList.remove('mobile-nav-open');
+  }
+});
+
+// Ensure mobile state is cleared when resizing to desktop
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768 && document.body.classList.contains('mobile-nav-open')) {
+    document.body.classList.remove('mobile-nav-open');
+  }
+});
 
 const contactForm = document.getElementById("contactForm");
 const contactStatus = document.getElementById("contactStatus");

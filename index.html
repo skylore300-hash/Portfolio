@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Portfolio - Sierra Kaluba</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,0,0" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="bg-slate-950 text-slate-100" data-page="home">
+  <body class="bg-white text-slate-900" data-page="home">
     <div class="layout">
       <aside class="side-nav">
         <div class="side-nav-glass">
@@ -26,32 +29,63 @@
           </div>
           <nav class="side-nav-links">
             <a class="side-nav-item" href="#home">
-              <span class="side-nav-icon">H</span>
+              <span class="side-nav-icon" aria-hidden="true">
+                home
+              </span>
               <span data-i18n="navHome">Accueil</span>
             </a>
             <a class="side-nav-item" href="#projects">
-              <span class="side-nav-icon">P</span>
+              <span class="side-nav-icon" aria-hidden="true">
+                folder
+              </span>
               <span data-i18n="navProjects">Projets</span>
             </a>
             <a class="side-nav-item" href="#skills">
-              <span class="side-nav-icon">S</span>
+              <span class="side-nav-icon" aria-hidden="true">
+                code
+              </span>
               <span data-i18n="navSkills">Compétences</span>
             </a>
             <a class="side-nav-item" href="#about">
-              <span class="side-nav-icon">A</span>
+              <span class="side-nav-icon" aria-hidden="true">
+                person
+              </span>
               <span data-i18n="navAbout">À propos</span>
             </a>
             <a class="side-nav-item" href="#contact">
-              <span class="side-nav-icon">C</span>
+              <span class="side-nav-icon" aria-hidden="true">
+                mail
+              </span>
               <span data-i18n="navContact">Contact</span>
             </a>
           </nav>
           <div class="side-nav-footer">
+            <div class="side-actions">
+              <a
+                class="side-action"
+                href="https://github.com/skylore300-hash"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Ouvrir mon profil GitHub"
+              >
+                <span class="side-nav-icon" aria-hidden="true">
+                  data_object
+                </span>
+                <span>GitHub</span>
+              </a>
+              <a class="side-action" href="cv.html" aria-label="Ouvrir ma page CV">
+                <span class="side-nav-icon" aria-hidden="true">
+                  description
+                </span>
+                <span>CV</span>
+              </a>
+            </div>
             <button class="side-control" id="langToggle" type="button" aria-pressed="false">
-              <span class="side-nav-icon">FR</span>
+              <span class="side-nav-icon" aria-hidden="true">
+                translate
+              </span>
               <span class="side-control-label" data-i18n="langToggleToEn">English</span>
             </button>
-            <div class="side-avatar">SK</div>
           </div>
         </div>
       </aside>
@@ -62,6 +96,7 @@
         class="nav-open-btn"
         type="button"
         aria-label="Ouvrir la navigation"
+        aria-expanded="false"
         data-i18n-aria="openNavAria"
       >
         <span data-i18n="menuButton">Menu</span>
