@@ -14,6 +14,10 @@
           <div class="side-nav-logo">
             <div class="logo-mark">SK</div>
             <span class="font-display text-sm tracking-wide">Sierra Kaluba</span>
+            <button id="navMenuToggle" class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="mainNavMenu">
+              <span class="material-symbols-rounded" aria-hidden="true">menu</span>
+              <span data-i18n="menuButton">Menu</span>
+            </button>
             <button
               id="navToggleClose"
               class="side-nav-close"
@@ -24,7 +28,7 @@
               x
             </button>
           </div>
-          <nav class="side-nav-links">
+          <nav id="mainNavMenu" class="side-nav-links" aria-label="Navigation principale">
             <a class="side-nav-item" href="index.html#home">
               <span class="side-nav-icon">H</span>
               <span data-i18n="navHome">Accueil</span>
@@ -55,7 +59,11 @@
                 rel="noreferrer"
                 aria-label="Ouvrir mon profil GitHub"
               >
-                <span class="side-nav-icon">GH</span>
+                <span class="side-nav-icon" aria-hidden="true">
+                  <svg class="github-mark" viewBox="0 0 24 24" focusable="false">
+                    <path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.54v-2.1c-3.1.67-3.75-1.32-3.75-1.32-.5-1.28-1.23-1.62-1.23-1.62-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.6 1.21 3.23.92.1-.72.39-1.21.71-1.49-2.47-.28-5.07-1.23-5.07-5.48 0-1.21.43-2.2 1.14-2.98-.11-.28-.49-1.41.11-2.94 0 0 .93-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.12-1.44 3.05-1.14 3.05-1.14.61 1.53.23 2.66.11 2.94.71.78 1.14 1.77 1.14 2.98 0 4.26-2.6 5.2-5.08 5.47.4.35.75 1.02.75 2.06v3.05c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z" />
+                  </svg>
+                </span>
                 <span>GitHub</span>
               </a>
               <a class="side-action" href="cv.html" aria-label="Ouvrir ma page CV">
@@ -83,35 +91,14 @@
           <span data-i18n="menuButton">Menu</span>
         </button>
         <section class="section">
-          <div class="mx-auto max-w-6xl px-6">
-            <div class="section-title" data-i18n="projectsPageTitle">Plus de projets</div>
-            <div class="projects-split">
-              <div>
-                <div
-                  class="projects-list"
-                  id="projectsList"
-                  aria-live="polite"
-                  aria-busy="true"
-                >
-                  <article class="project-item">
-                    <div class="project-title" data-i18n="projectsLoadingTitle">Chargement des projets GitHub...</div>
-                    <p class="project-text">
-                      <span data-i18n="projectsLoadingText">Les cartes sont récupérées automatiquement depuis ton compte GitHub.</span>
-                    </p>
-                  </article>
-                </div>
-                <p class="mt-4 text-sm text-white/60" id="projectsStatus" data-i18n="projectsStatus">Connexion à GitHub en cours.</p>
-                <a class="btn btn-ghost w-fit mt-4" href="index.html#projects" data-i18n="backToProjects">Retour aux projets</a>
-              </div>
-
-              <div class="project-code" id="projectCodePanel" aria-live="polite">
-                <div class="code-header">
-                  <span id="codeTitle" data-i18n="selectProjectTitle">Sélectionne un projet</span>
-                  <span class="code-pill" id="codeTag"></span>
-                </div>
-                <pre class="code-block"><code id="codeContent" data-i18n="selectProjectCode">// Cliquez sur un projet pour voir un extrait de code ici.</code></pre>
-              </div>
-            </div>
+          <div class="github-projects-page">
+            <span class="github-projects-kicker" data-i18n="projectsPageEyebrow">MES PROJETS, MON CODE</span>
+            <h1 class="github-projects-title" data-i18n="projectsPageTitle">Retrouve tous mes projets sur GitHub.</h1>
+            <a class="btn btn-primary github-projects-button" href="https://github.com/skylore300-hash" target="_blank" rel="noreferrer">
+              <svg class="github-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.54v-2.1c-3.1.67-3.75-1.32-3.75-1.32-.5-1.28-1.23-1.62-1.23-1.62-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.6 1.21 3.23.92.1-.72.39-1.21.71-1.49-2.47-.28-5.07-1.23-5.07-5.48 0-1.21.43-2.2 1.14-2.98-.11-.28-.49-1.41.11-2.94 0 0 .93-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.12-1.44 3.05-1.14 3.05-1.14.61 1.53.23 2.66.11 2.94.71.78 1.14 1.77 1.14 2.98 0 4.26-2.6 5.2-5.08 5.47.4.35.75 1.02.75 2.06v3.05c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z" /></svg>
+              <span data-i18n="viewGitHubProjects">Voir mes projets sur GitHub</span>
+              <span aria-hidden="true">↗</span>
+            </a>
           </div>
         </section>
       </main>
