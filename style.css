@@ -3492,6 +3492,15 @@ body[data-page="home"] .contact-direct-icon {
   font-size: 1.35rem;
 }
 
+body[data-page="home"] .contact-whatsapp-icon {
+  display: grid;
+  place-items: center;
+  background: #e5f8ee;
+  color: #159447;
+}
+body[data-page="home"] .contact-whatsapp-icon svg { width: 1.45rem; height: 1.45rem; fill: currentColor; }
+body[data-page="home"] .contact-whatsapp-link:hover .contact-whatsapp-icon { background: #159447; color: #fff; }
+
 body[data-page="home"] .contact-github-icon { background: #0a3c6e; color: #ffffff; }
 body[data-page="home"] .contact-direct-copy { display: grid; min-width: 0; gap: 0.2rem; }
 body[data-page="home"] .contact-direct-copy small { color: #6a7f90; font-size: 0.75rem; }
