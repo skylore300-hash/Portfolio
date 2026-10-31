@@ -18,6 +18,9 @@ const translations = {
     langToggleToEn: "English",
     langToggleToFr: "Français",
     heroRole: "Développeur backend & web",
+    heroHeading: "JE CONÇOIS LE<br>WEB DE DEMAIN.",
+    heroFeatureTop: "Pensé avec<br>intention",
+    heroFeatureBottom: "Du code pour<br>vos idées",
     heroSubtitle: "Je crée des expériences web modernes, rapides et propres.",
     heroCtaProjects: "Voir mes projets",
     heroCtaContact: "Contact",
@@ -86,6 +89,9 @@ const translations = {
     langToggleToEn: "English",
     langToggleToFr: "French",
     heroRole: "Backend & Web Developer",
+    heroHeading: "I BUILD FOR THE<br>BETTER WEB.",
+    heroFeatureTop: "Thoughtful<br>by design",
+    heroFeatureBottom: "Code made<br>to move ideas",
     heroSubtitle: "I build modern, fast, and polished web experiences.",
     heroCtaProjects: "See my projects",
     heroCtaContact: "Contact",
@@ -181,7 +187,8 @@ function applyLanguage(language, persist = true) {
     const key = element.dataset.i18n;
     const translatedText = translations[nextLanguage][key];
     if (translatedText) {
-      element.textContent = translatedText;
+      if (key === "heroHeading") element.innerHTML = translatedText;
+      else element.textContent = translatedText;
     }
   });
 
